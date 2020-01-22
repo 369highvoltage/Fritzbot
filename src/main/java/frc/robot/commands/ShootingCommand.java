@@ -7,10 +7,17 @@ import frc.robot.subsystems.ShooterSubsystem;
 
 public class ShootingCommand extends SequentialCommandGroup {
     private ShooterSubsystem shootSys;
-    private JoystickSubsystem joySys;
+    private JoystickSubsystem joySys; // Delete this, JoystickSubsystem is now gone.
+    
     public ShootingCommand() {
+        /*  Not sure, but may have to initialize shootSys here
+            Also means you may have to modify the constructor to accept a ShooterSubsystem as a command.
+        */
+
         addCommands(
-            new SpoolMotors(shootSys, joySys), new FireDisc(shootSys)
+            // If you have multiple commands, put them on separate lines for clarity.
+            new SpoolMotors(shootSys, joySys),
+            new FireDisc(shootSys)
         );
     }
     

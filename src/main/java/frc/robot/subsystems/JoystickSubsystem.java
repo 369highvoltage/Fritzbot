@@ -1,3 +1,8 @@
+/*  Aside from the last two functions,
+    Delete this entire file,
+    It's now completely useless & redundant.
+*/
+
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -94,6 +99,11 @@ public class JoystickSubsystem extends SubsystemBase {
 
     }
 
+
+    /*  I don't know what you're using this for,
+        but if you need it for whatever reason,
+        move it into a dedicated command.
+    */
     public void toggleShooter() {
         //isLifted = !isLifted;
         if(!shooterSys.isUp()) {
