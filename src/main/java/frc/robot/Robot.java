@@ -21,6 +21,7 @@ import frc.robot.subsystems.JoystickSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.CameraSubsystem.CameraMode;
 import frc.robot.subsystems.CameraSubsystem.LightMode;
+import frc.robot.utils.EncoderSystem;
 import frc.robot.utils.Limelight;
 import frc.robot.utils.OI;
 import edu.wpi.first.wpilibj.Joystick;
@@ -49,7 +50,7 @@ public class Robot extends TimedRobot {
   private CameraSubsystem cam;
   private Limelight limelight;
     private OI oi;
-  private ShootingCommand scomm;
+  private EncoderSystem encoder;
  // private JoystickCommand jcomm;
 
   /**public static enum LightMode {
@@ -80,8 +81,9 @@ public class Robot extends TimedRobot {
     cam = new CameraSubsystem();
     oi = new OI();
     driveCommand = new DriveCommand(driveSys, oi);
-    scomm = new ShootingCommand(shooterSys);
+    encoder = new EncoderSystem(0,1);
    // jcomm = new JoystickCommand(driveSys, shooterSys, oi, scomm);
+    encoder.init();
     cam.Vision();
   }
 
@@ -99,6 +101,7 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    encoder.putToDashboard();
   }
 
   /**
@@ -187,7 +190,6 @@ public class Robot extends TimedRobot {
     limelight.setLed("off");
     cam.setLedMode(LightMode.eOff);
     cam.setCameraMode(CameraMode.eDriver);
-
     driveSys.setDefaultCommand(driveCommand);
     //oi.setDefaultCommand(jcomm);
   }
@@ -238,6 +240,7 @@ public class Robot extends TimedRobot {
     }
     
     return steeringAdjust;
+
 
 
 }
